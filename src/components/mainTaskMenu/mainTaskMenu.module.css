@@ -1,0 +1,30 @@
+.add_task {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(44, 136, 44);
+
+  align-items: center;
+}
+.add_task_text {
+  color: white;
+}
+.add_task_input_and_button {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.add_task_input {
+  text-align: center;
+  background-color: #d1db3f;
+  border: none;
+  font-size: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.button_add {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #db973f;
+}
+.button_add_text {
+  font-size: 15px;
+}

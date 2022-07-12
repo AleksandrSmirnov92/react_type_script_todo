@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AppCSS from './App.module.css';
 import Header from './components/header/header';
+import MainTaskMenu from './components/mainTaskMenu/mainTaskMenu';
 const getCounterFromLocalStorage = (): number => {
   const counterLocalStorage: Storage = JSON.parse(
     localStorage.getItem('counter')!
@@ -29,9 +30,29 @@ function App() {
     localStorage.setItem('Filter', JSON.stringify(filter));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tasks, filter]);
+
+  interface Task {
+    id: number;
+    message: string | null;
+    changeColor: boolean;
+  }
+  const addTask = (input: string) => {
+    setTasks((prevTasks: Task[]): Object[] => {
+      return [
+        ...prevTasks,
+        {
+          id: Math.random(),
+          massage: input,
+          changeColor: false,
+        },
+      ];
+    });
+    setCounter(counter + 1);
+  };
   return (
     <div className={`${AppCSS.App} ${AppCSS.AppWrapper}`}>
       <Header counter={counter} />
+      <MainTaskMenu addTaskk={addTask} />
     </div>
   );
 }

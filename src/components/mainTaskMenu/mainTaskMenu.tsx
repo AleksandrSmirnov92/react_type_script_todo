@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import AddTaskCSS from './mainTaskMenu.module.css';
+import React, { useRef, useState } from "react";
+import AddTaskCSS from "./mainTaskMenu.module.css";
 
 interface AddTask {
   addTaskk: (input: string) => void;
@@ -7,25 +7,26 @@ interface AddTask {
 
 const MainTaskMenu = ({ addTaskk }: AddTask) => {
   const refText = useRef<HTMLInputElement>(null);
-  const [input, setinput] = useState('');
+  const [input, setinput] = useState("");
   const taskText = () => {
     if (refText && refText.current) {
       setinput(refText.current.value);
     }
   };
   const addTask = (input: string): void => {
-    if (input.trim() !== '') {
+    if (input.trim() !== "") {
       addTaskk(input);
-      setinput('');
+      setinput("");
     } else {
-      alert('Вы ничего не ввели!');
+      alert("Вы ничего не ввели!");
     }
   };
   const onKeyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.code === 'Enter') {
+    if (event.code === "Enter") {
       addTask(input);
     }
   };
+
   return (
     <div className={AddTaskCSS.add_task}>
       <h1 className={AddTaskCSS.add_task_text}>Добавить задачу</h1>
@@ -44,7 +45,8 @@ const MainTaskMenu = ({ addTaskk }: AddTask) => {
             className={AddTaskCSS.button_add_text}
             onClick={() => {
               addTask(input);
-            }}>
+            }}
+          >
             Добавить
           </span>
         </button>

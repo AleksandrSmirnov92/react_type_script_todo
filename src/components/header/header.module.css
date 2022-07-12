@@ -1,0 +1,26 @@
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(102, 151, 2);
+}
+.header_wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.header_span {
+  text-align: center;
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.header_span2 {
+  font-size: 30px;
+  color: white;
+  text-align: center;
+  padding-bottom: 10px;
+}

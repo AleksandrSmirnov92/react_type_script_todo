@@ -16,8 +16,7 @@ const AllTasks: React.FC<TypeForFC> = ({
   };
   return (
     <>
-      {' '}
-      {tasks.map((x: { id: number; massage: string; changeColor: boolean }) => {
+      {tasks.map((x: { id: number; message: string; changeColor: boolean }) => {
         if (filter === 'ALL') {
           return <Task x={x} remove={remove} checkbox={checkbox} />;
         }

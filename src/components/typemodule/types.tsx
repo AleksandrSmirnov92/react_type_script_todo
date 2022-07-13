@@ -1,7 +1,7 @@
 export interface TypeForFC {
   tasks: {
     id: number;
-    massage: string;
+    message: string;
     changeColor: boolean;
   }[];
   removeTask: (id: number) => void;
@@ -13,7 +13,7 @@ export interface TaskAtribute {
   x: {
     id: number;
     changeColor: boolean;
-    massage: string;
+    message: string;
   };
   checkbox: (id: number) => void;
   remove: (id: number) => void;

@@ -23,8 +23,13 @@ const getTasksFromLocalStorage = () => {
     return [];
   }
 };
+interface Task {
+  id: number;
+  message: string | null;
+  changeColor: boolean;
+}
 function App() {
-  const [tasks, setTasks] = useState(getTasksFromLocalStorage()); // как типизировать ???
+  const [tasks, setTasks] = useState<Task[] | any>(getTasksFromLocalStorage()); // как типизировать ???
   const [counter, setCounter] = useState<number>(getCounterFromLocalStorage());
   const [filter, setFilter] = useState<string>(FilterValue.ALL);
   useEffect(() => {
@@ -34,18 +39,13 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tasks, filter]);
 
-  interface Task {
-    id: number;
-    message: string | null;
-    changeColor: boolean;
-  }
   const addTask = (input: string) => {
-    setTasks((prevTasks: Task[]): Object[] => {
+    setTasks((prevTasks: Task[]) => {
       return [
         ...prevTasks,
         {
           id: Math.random(),
-          massage: input,
+          message: input,
           changeColor: false,
         },
       ];

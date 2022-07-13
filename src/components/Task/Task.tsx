@@ -17,7 +17,7 @@ const Task: React.FC<TaskAtribute> = ({ x, checkbox, remove }) => {
             ? AllTaskCSS.add_task_result_text_t
             : AllTaskCSS.add_task_result_text
         }`}>
-        {x.massage}
+        {x.message}
       </span>
       <div>
         <input

@@ -15,7 +15,12 @@ const getCounterFromLocalStorage = (): number => {
     return 0;
   }
 };
-const getTasksFromLocalStorage = () => {
+interface Task {
+  id: number;
+  message: string;
+  changeColor: boolean;
+}
+const getTasksFromLocalStorage = (): Task[] | [] => {
   const tasksLocalStorage = JSON.parse(localStorage.getItem('todo')!);
   if (tasksLocalStorage) {
     return JSON.parse(localStorage.getItem('todo')!);
@@ -23,13 +28,9 @@ const getTasksFromLocalStorage = () => {
     return [];
   }
 };
-interface Task {
-  id: number;
-  message: string | null;
-  changeColor: boolean;
-}
+
 function App() {
-  const [tasks, setTasks] = useState<Task[] | any>(getTasksFromLocalStorage()); // как типизировать ???
+  const [tasks, setTasks] = useState<Task[]>(getTasksFromLocalStorage()); // как типизировать ???
   const [counter, setCounter] = useState<number>(getCounterFromLocalStorage());
   const [filter, setFilter] = useState<string>(FilterValue.ALL);
   useEffect(() => {

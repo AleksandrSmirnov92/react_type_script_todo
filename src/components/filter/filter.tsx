@@ -1,15 +1,10 @@
-import React, { useRef } from "react";
-import FilterCSS from "./filter.module.css";
-enum FilterValues {
-  ALL = "ALL",
-  ALLACTIVE = "ALLACTIVE",
-  ALLINACTIVE = "ALLINACTIVE",
-  DEFAULT = "DEFAULT",
-}
-interface FilterValue {
+import React, { useRef } from 'react';
+import FilterCSS from './filter.module.css';
+import { FilterValue } from '../typemodule/types';
+interface TypeForFC {
   changeFilter: (value: string) => void;
 }
-const Filter: React.FC<FilterValue> = ({ changeFilter }) => {
+const Filter: React.FC<TypeForFC> = ({ changeFilter }) => {
   let valuee = useRef<HTMLSelectElement>(null);
   let change = () => {
     if (valuee && valuee.current) {
@@ -22,16 +17,15 @@ const Filter: React.FC<FilterValue> = ({ changeFilter }) => {
         ref={valuee}
         onChange={change}
         className={FilterCSS.filter}
-        defaultValue={FilterValues.DEFAULT}
-      >
-        <option id="1" value={FilterValues.ALL} selected>
-          Выбрать все{" "}
+        defaultValue={FilterValue.DEFAULT}>
+        <option id="1" value={FilterValue.ALL} selected>
+          Выбрать все{' '}
         </option>
-        <option id="2" value={FilterValues.ALLACTIVE}>
-          {" "}
-          Выбрать активные{" "}
+        <option id="2" value={FilterValue.ALLACTIVE}>
+          {' '}
+          Выбрать активные{' '}
         </option>
-        <option id="3" value={FilterValues.ALLINACTIVE}>
+        <option id="3" value={FilterValue.ALLINACTIVE}>
           Выбрать законченные
         </option>
       </select>

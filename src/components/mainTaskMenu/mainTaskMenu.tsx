@@ -2,17 +2,22 @@ import React, { useRef, useState } from "react";
 import AddTaskCSS from "./mainTaskMenu.module.css";
 
 interface AddTask {
+  // опечатка
   addTaskk: (input: string) => void;
 }
 
 const MainTaskMenu = ({ addTaskk }: AddTask) => {
   const refText = useRef<HTMLInputElement>(null);
   const [input, setinput] = useState("");
+
+  // можно назвать onInputChange или onInput
   const taskText = () => {
+    // можно refText?.current
     if (refText && refText.current) {
       setinput(refText.current.value);
     }
   };
+
   const addTask = (input: string): void => {
     if (input.trim() !== "") {
       addTaskk(input);
@@ -21,6 +26,7 @@ const MainTaskMenu = ({ addTaskk }: AddTask) => {
       alert("Вы ничего не ввели!");
     }
   };
+
   const onKeyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.code === "Enter") {
       addTask(input);

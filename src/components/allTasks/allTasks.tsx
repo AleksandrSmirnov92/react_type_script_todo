@@ -23,13 +23,11 @@ const AllTasks: React.FC<TypeForFC> = ({
   return (
     <>
       {tasks.map((x: { id: number; message: string; changeColor: boolean }) => {
-        if (filter === 'ALL') {
-          return <Task x={x} remove={remove} checkbox={checkbox} />;
-        }
-        if (filter === 'ALLACTIVE' && x.changeColor === false) {
-          return <Task x={x} remove={remove} checkbox={checkbox} />;
-        }
-        if (filter === 'ALLINACTIVE' && x.changeColor === true) {
+        if (
+          filter === 'ALL' ||
+          (filter === 'ALLACTIVE' && x.changeColor === false) ||
+          (filter === 'ALLINACTIVE' && x.changeColor === true)
+        ) {
           return <Task x={x} remove={remove} checkbox={checkbox} />;
         }
       })}

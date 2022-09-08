@@ -19,7 +19,7 @@ const AllTasks: React.FC<TypeForFC> = ({
   // тут достаточно странное условие, которому что в любом случае будет
   //           return <Task x={x} remove={remove} checkbox={checkbox} />;
   // думаю его можно удалить тогда
-  // начну отсюда !
+  // Добавлю коментарий
   return (
     <>
       {tasks.map((x: { id: number; message: string; changeColor: boolean }) => {

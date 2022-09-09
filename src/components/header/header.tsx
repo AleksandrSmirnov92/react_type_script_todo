@@ -5,7 +5,8 @@ interface Props {
 }
 // можно просто
 //const Header: React.FC<Props> = ({ counter }: Props) => {
-const Header = ({ counter }: Props) => {
+// исправил
+const Header: React.FC<Props> = ({ counter }) => {
   return (
     <header className={HeaderCSS.header}>
       <div className={HeaderCSS.header_wrapper}>

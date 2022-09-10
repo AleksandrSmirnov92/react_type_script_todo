@@ -66,7 +66,7 @@ function App() {
     localStorage.setItem('todo', JSON.stringify(tasks));
     localStorage.setItem('Filter', JSON.stringify(filter));
     // лучше counter рассчитывать при изменении таски просто выбором из тасок количества
-  }, [tasks, filter]); // оно ругалось потому что ты используешь переменную из состояния counter но не указал ее в зависимостях
+  }, [tasks, filter, counter]); // оно ругалось потому что ты используешь переменную из состояния counter но не указал ее в зависимостях
   useEffect(() => {
     setCounter(
       tasks.filter((x: { changeColor: boolean }) => !x.changeColor).length

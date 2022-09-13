@@ -6,52 +6,20 @@ import Header from './components/header/header';
 import MainTaskMenu from './components/mainTaskMenu/mainTaskMenu';
 import { FilterValue } from './components/typemodule/types';
 
-// const getCounterFromLocalStorage = (): number => {
-//   const counterLocalStorage: Storage = JSON.parse(
-//     localStorage.getItem('counter')!
-//   );
-//   if (counterLocalStorage) {
-//     return JSON.parse(localStorage.getItem('counter')!);
-//   } else {
-//     return 0;
-//   }
-// };
 interface Task {
   id: number;
   message: string;
   changeColor: boolean;
 }
 
-// FIXME: тут будет тип Task[] просто
-//const getTasksFromLocalStorage = (): Task[] | [] => {
-// const getTasksFromLocalStorage = (): Task[] => {
-// Можно не делать два раза JSON.parse, но потенциально JSON.parse может упасть поэтому лучше написать
-/**
-  try {
-    return JSON.parse(localStorage.getItem("todo")) ?? [];
-  } catch {
-    return [];
-  }
-   */
-
-//   try {
-//     return JSON.parse(localStorage.getItem('todo')!) ?? [];
-//   } catch {
-//     return [];
-//   }
-// };
-
 function App() {
-  //const [tasks, setTasks] = useState<Task[]>(getTasksFromLocalStorage()); // как типизировать ???
-  // лучше передать в useState функцию тогда она будет вызвана один раз а не на каждый рендер
-  const [tasks, setTasks] = useState(() => {
+  const [tasks, setTasks] = useState<Task[]>(() => {
     try {
       return JSON.parse(localStorage.getItem('todo')!) ?? [];
     } catch {
       return [];
     }
-  }); // оно автоматически типизируется
-  // тут аналогично лучше вычислять один раз при помощи функции
+  });
   const [counter, setCounter] = useState<number>(() => {
     try {
       return JSON.parse(localStorage.getItem('counter')!) ?? 0;
@@ -73,7 +41,7 @@ function App() {
     );
   }, [tasks]);
   const addTask = (input: string) => {
-    setTasks((prevTasks: [{}]) => {
+    setTasks((prevTasks: Task[]) => {
       return [
         ...prevTasks,
         {
@@ -126,13 +94,13 @@ function App() {
   return (
     <div className={`${AppCSS.App} ${AppCSS.AppWrapper}`}>
       <Header counter={counter} />
-      <MainTaskMenu WriteaTask={addTask} />
+      <MainTaskMenu addTask={addTask} />
       <Filter changeFilter={changeFilter} />
       <AllTasks
         tasks={tasks}
         removeTask={removeTask}
         filter={filter}
-        changeCheked={changeChecked}
+        changeChecked={changeChecked}
       />
     </div>
   );

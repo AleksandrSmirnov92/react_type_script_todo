@@ -7,13 +7,13 @@ const AllTasks: React.FC<TypeForFC> = ({
   tasks,
   removeTask,
   filter,
-  changeCheked,
+  changeChecked,
 }) => {
   const remove = (id: number) => {
     removeTask(id);
   };
   const checkbox = (id: number) => {
-    changeCheked(id);
+    changeChecked(id);
   };
 
   // тут достаточно странное условие, которому что в любом случае будет
@@ -25,8 +25,8 @@ const AllTasks: React.FC<TypeForFC> = ({
       {tasks.map((x: { id: number; message: string; changeColor: boolean }) => {
         if (
           filter === 'ALL' ||
-          (filter === 'ALLACTIVE' && x.changeColor === false) ||
-          (filter === 'ALLINACTIVE' && x.changeColor === true)
+          (filter === 'ALLACTIVE' && !x.changeColor) ||
+          (filter === 'ALLINACTIVE' && x.changeColor)
         ) {
           return <Task x={x} remove={remove} checkbox={checkbox} />;
         }

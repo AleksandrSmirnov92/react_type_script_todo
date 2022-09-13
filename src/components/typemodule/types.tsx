@@ -6,7 +6,7 @@ export interface TypeForFC {
   }[];
   removeTask: (id: number) => void;
   filter: string;
-  changeCheked: (id: number) => void;
+  changeChecked: (id: number) => void;
 }
 
 export interface TaskAtribute {

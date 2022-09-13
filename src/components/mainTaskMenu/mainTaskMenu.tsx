@@ -3,10 +3,10 @@ import AddTaskCSS from './mainTaskMenu.module.css';
 
 interface AddTask {
   // опечатка
-  WriteaTask: (input: string) => void;
+  addTask: (input: string) => void;
 }
 
-const MainTaskMenu = ({ WriteaTask }: AddTask) => {
+const MainTaskMenu = ({ addTask }: AddTask) => {
   const refText = useRef<HTMLInputElement>(null);
   const [input, setinput] = useState('');
 
@@ -18,9 +18,9 @@ const MainTaskMenu = ({ WriteaTask }: AddTask) => {
     }
   };
 
-  const addTask = (input: string): void => {
+  const add_task_input = (input: string): void => {
     if (input.trim() !== '') {
-      WriteaTask(input);
+      addTask(input);
       setinput('');
     } else {
       alert('Вы ничего не ввели!');
@@ -50,7 +50,7 @@ const MainTaskMenu = ({ WriteaTask }: AddTask) => {
           <span
             className={AddTaskCSS.button_add_text}
             onClick={() => {
-              addTask(input);
+              add_task_input(input);
             }}>
             Добавить
           </span>

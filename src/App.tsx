@@ -33,8 +33,7 @@ function App() {
     localStorage.setItem('counter', JSON.stringify(counter));
     localStorage.setItem('todo', JSON.stringify(tasks));
     localStorage.setItem('Filter', JSON.stringify(filter));
-    // лучше counter рассчитывать при изменении таски просто выбором из тасок количества
-  }, [tasks, filter, counter]); // оно ругалось потому что ты используешь переменную из состояния counter но не указал ее в зависимостях
+  }, [tasks, filter, counter]);
   useEffect(() => {
     setCounter(
       tasks.filter((x: { changeColor: boolean }) => !x.changeColor).length
@@ -45,46 +44,25 @@ function App() {
       return [
         ...prevTasks,
         {
-          id: Math.random(), // может и совпасть, для простоты можно сделать просто счетчик от 0 и в него добавлять
+          id: Math.random(),
           message: input,
           changeColor: false,
         },
       ];
     });
-    // (1) лучше через useEffect(() => { setCounter(tasks.filter(x => !x.changeColor).length) }, [tasks])
-    // setCounter(counter + 1);
   };
   const removeTask = (id: number): void => {
-    //setTasks([...tasks.filter((addMessage: Task) => addMessage.id !== id)]);
-    // Нет смысла дополнительно [...] писать filter и так вернет новый массив, типизировать тоже не надо он и так знает что tasks: Task[] типа
     setTasks(tasks.filter((task: { id: number }) => task.id !== id));
-
-    // логика должна быть в эффекте (1)
-    // for (const item of tasks) {
-    //   if (item.id === id && item.changeColor === false) {
-    // setCounter(counter - 1);
-
-    //   break;
-    // }
-    // }
   };
   const changeFilter = (value: string) => {
     setFilter(value);
   };
-  // опечатка checked
+
   const changeChecked = (id: number) => {
-    // тоже заворачивать в [...] нет смысла map возвращает новый массив, и тип писать
     setTasks(
       tasks.map((item: Task) => {
         if (item.id === id) {
           item.changeColor = !item.changeColor;
-
-          // логика пусть в эффект (1) уезжает
-          // if (item.changeColor) {
-          //   // setCounter(counter - 1);
-          // } else {
-          //   // setCounter(counter + 1);
-          // }
         }
         return item;
       })

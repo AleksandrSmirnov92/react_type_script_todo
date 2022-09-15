@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import AddTaskCSS from './mainTaskMenu.module.css';
 
 interface AddTask {
-  // опечатка
   addTask: (input: string) => void;
 }
 
@@ -10,9 +9,7 @@ const MainTaskMenu = ({ addTask }: AddTask) => {
   const refText = useRef<HTMLInputElement>(null);
   const [input, setinput] = useState('');
 
-  // можно назвать onInputChange или onInput
   const onInputChange = () => {
-    // можно refText?.current
     if (refText?.current) {
       setinput(refText.current.value);
     }

@@ -2,7 +2,6 @@ import React from 'react';
 import Task from '../Task/Task';
 import { TypeForFC } from '../typemodule/types';
 
-// можно без React.FC как и в остальных
 const AllTasks: React.FC<TypeForFC> = ({
   tasks,
   removeTask,
@@ -16,10 +15,6 @@ const AllTasks: React.FC<TypeForFC> = ({
     changeChecked(id);
   };
 
-  // тут достаточно странное условие, которому что в любом случае будет
-  //           return <Task x={x} remove={remove} checkbox={checkbox} />;
-  // думаю его можно удалить тогда
-  // Добавлю коментарий
   return (
     <>
       {tasks.map((x: { id: number; message: string; changeColor: boolean }) => {

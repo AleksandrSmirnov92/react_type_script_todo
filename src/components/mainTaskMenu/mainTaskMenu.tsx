@@ -1,34 +1,31 @@
-import React, { useRef, useState } from "react";
-import AddTaskCSS from "./mainTaskMenu.module.css";
+import React, { useRef, useState } from 'react';
+import AddTaskCSS from './mainTaskMenu.module.css';
 
 interface AddTask {
-  // опечатка
-  addTaskk: (input: string) => void;
+  addTask: (input: string) => void;
 }
 
-const MainTaskMenu = ({ addTaskk }: AddTask) => {
+const MainTaskMenu = ({ addTask }: AddTask) => {
   const refText = useRef<HTMLInputElement>(null);
-  const [input, setinput] = useState("");
+  const [input, setinput] = useState('');
 
-  // можно назвать onInputChange или onInput
-  const taskText = () => {
-    // можно refText?.current
-    if (refText && refText.current) {
+  const onInputChange = () => {
+    if (refText?.current) {
       setinput(refText.current.value);
     }
   };
 
-  const addTask = (input: string): void => {
-    if (input.trim() !== "") {
-      addTaskk(input);
-      setinput("");
+  const add_task_input = (input: string): void => {
+    if (input.trim() !== '') {
+      addTask(input);
+      setinput('');
     } else {
-      alert("Вы ничего не ввели!");
+      alert('Вы ничего не ввели!');
     }
   };
 
   const onKeyPressHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.code === "Enter") {
+    if (event.code === 'Enter') {
       addTask(input);
     }
   };
@@ -41,7 +38,7 @@ const MainTaskMenu = ({ addTaskk }: AddTask) => {
           ref={refText}
           type="text"
           className={AddTaskCSS.add_task_input}
-          onChange={taskText}
+          onChange={onInputChange}
           onKeyDown={onKeyPressHandler}
           value={input}
           placeholder="Добавить задачу"
@@ -50,9 +47,8 @@ const MainTaskMenu = ({ addTaskk }: AddTask) => {
           <span
             className={AddTaskCSS.button_add_text}
             onClick={() => {
-              addTask(input);
-            }}
-          >
+              add_task_input(input);
+            }}>
             Добавить
           </span>
         </button>

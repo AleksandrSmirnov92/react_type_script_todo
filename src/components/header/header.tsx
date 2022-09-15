@@ -3,9 +3,8 @@ import HeaderCSS from './header.module.css';
 interface Props {
   counter: number;
 }
-// можно просто
-//const Header: React.FC<Props> = ({ counter }: Props) => {
-const Header = ({ counter }: Props) => {
+
+const Header: React.FC<Props> = ({ counter }) => {
   return (
     <header className={HeaderCSS.header}>
       <div className={HeaderCSS.header_wrapper}>
